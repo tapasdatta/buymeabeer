@@ -61,3 +61,7 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :buymeabeer, Buymeabeer.Guardian,
+  issuer: "buymeabeer",
+  secret_key: "OEZYhBKd6E+d/0YyaS2XehUFCM2GD9o24VgXO0Pk7HLrmiIgbqHRwXeoJzMDy9ft"

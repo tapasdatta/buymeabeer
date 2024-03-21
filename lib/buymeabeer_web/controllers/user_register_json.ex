@@ -23,9 +23,10 @@ defmodule BuymeabeerWeb.UserRegisterJSON do
     }
   end
 
-  def token(%{user: user}) do
+  def token(%{token: token, user: user}) do
     %{
-      id: user.id
+      id: user.id,
+      token: token
     }
   end
 end
