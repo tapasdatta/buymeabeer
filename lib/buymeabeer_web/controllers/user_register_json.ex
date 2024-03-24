@@ -18,15 +18,7 @@ defmodule BuymeabeerWeb.UserRegisterJSON do
   defp data(%User{} = user) do
     %{
       id: user.id,
-      email: user.email,
-      hashed_password: user.hashed_password
-    }
-  end
-
-  def token(%{token: token, user: user}) do
-    %{
-      id: user.id,
-      token: token
+      token: user.token
     }
   end
 end

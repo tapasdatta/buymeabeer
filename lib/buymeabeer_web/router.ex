@@ -9,6 +9,6 @@ defmodule BuymeabeerWeb.Router do
     pipe_through :api
 
     post "/users/register", UserRegisterController, :create
-    # post "/brewers/log_in", AuthController, :create
+    post "/users/log_in", AuthController, :create
   end
 end
