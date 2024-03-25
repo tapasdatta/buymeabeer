@@ -3,6 +3,12 @@ defmodule BuymeabeerWeb.AuthJSON do
   Renders login token.
   """
   def show(%{token: token}) do
-    %{token: token}
+    %{data: data(token)}
+  end
+
+  defp data(token) do
+    %{
+      token: token
+    }
   end
 end

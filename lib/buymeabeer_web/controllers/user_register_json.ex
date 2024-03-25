@@ -1,13 +1,4 @@
 defmodule BuymeabeerWeb.UserRegisterJSON do
-  alias Buymeabeer.Accounts.User
-
-  @doc """
-  Renders a list of users.
-  """
-  def index(%{users: users}) do
-    %{data: for(user <- users, do: data(user))}
-  end
-
   @doc """
   Renders a single user.
   """
@@ -15,7 +6,7 @@ defmodule BuymeabeerWeb.UserRegisterJSON do
     %{data: data(user)}
   end
 
-  defp data(%User{} = user) do
+  defp data(user) do
     %{
       id: user.id,
       token: user.token

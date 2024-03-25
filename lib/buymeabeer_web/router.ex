@@ -5,6 +5,10 @@ defmodule BuymeabeerWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug BuymeabeerWeb.Pipeline
+  end
+
   scope "/api", BuymeabeerWeb do
     pipe_through :api
 
