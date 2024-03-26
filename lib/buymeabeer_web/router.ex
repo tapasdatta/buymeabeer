@@ -5,10 +5,12 @@ defmodule BuymeabeerWeb.Router do
     plug :accepts, ["json"]
   end
 
+  # Guardian JWT authentication plug for protected routes.
   pipeline :auth do
     plug BuymeabeerWeb.Pipeline
   end
 
+  # User auth routes.
   scope "/api", BuymeabeerWeb do
     pipe_through :api
 

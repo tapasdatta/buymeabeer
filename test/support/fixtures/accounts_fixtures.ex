@@ -11,11 +11,10 @@ defmodule Buymeabeer.AccountsFixtures do
     {:ok, user} =
       attrs
       |> Enum.into(%{
-        email: "some email",
-        hashed_password: "some hashed_password",
-        name: "some name"
+        email: "test@gmail.com",
+        password: "sejcdcd"
       })
-      |> Buymeabeer.Accounts.create_user()
+      |> Buymeabeer.Accounts.register_user()
 
     user
   end

@@ -1,4 +1,8 @@
 defmodule Buymeabeer.Accounts.User do
+  @moduledoc """
+  User schema defines the schema and changesets for all user related operations, validations
+  and data filteration.
+  """
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -10,7 +14,11 @@ defmodule Buymeabeer.Accounts.User do
     timestamps(type: :utc_datetime)
   end
 
-  @doc false
+  @doc """
+  A user changeset for registration.
+  It validates both user email and password. The email must be valid and unique.
+  The password field will be replaced by the hashed_password field.
+  """
   def registration_changeset(user, attrs, opts \\ []) do
     user
     |> cast(attrs, [:email, :password])
@@ -55,6 +63,9 @@ defmodule Buymeabeer.Accounts.User do
     end
   end
 
+  @doc """
+  It verifies the user input password with the db hashed password.
+  """
   def valid_password?(%Buymeabeer.Accounts.User{hashed_password: hashed_password}, password)
       when is_binary(hashed_password) and byte_size(password) > 0 do
     Bcrypt.verify_pass(password, hashed_password)
