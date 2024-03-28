@@ -25,3 +25,7 @@ config :logger, level: :warning
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :buymeabeer, Buymeabeer.Guardian,
+  issuer: "buymeabeer",
+  secret_key: "OEZYhBKd6E+d/0YyaS2XehUFCM2GD9o24VgXO0Pk7HLrmiIgbqHRwXeoJzMDy9ft"

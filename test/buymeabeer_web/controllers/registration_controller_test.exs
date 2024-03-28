@@ -5,7 +5,9 @@ defmodule BuymeabeerWeb.RegistrationControllerTest do
     email: "test@gmail.com",
     password: "secretpass"
   }
-  @invalid_attrs %{name: nil, email: nil}
+  @invalid_attrs %{email: nil, password: nil}
+  @invalid_email_attrs %{email: "Some name", password: "somepassword"}
+  @duplicate_email_attrs %{email: "some@gmail.com", password: "somepass"}
 
   setup %{conn: conn} do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
@@ -19,6 +21,20 @@ defmodule BuymeabeerWeb.RegistrationControllerTest do
 
     test "renders errors when data is invalid", %{conn: conn} do
       conn = post(conn, ~p"/api/users/register", user: @invalid_attrs)
+      assert json_response(conn, 422)["errors"] != %{}
+    end
+
+    test "renders errors when email invalid", %{conn: conn} do
+      conn = post(conn, ~p"/api/users/register", user: @invalid_email_attrs)
+      assert json_response(conn, 422)["errors"] != %{}
+    end
+
+    test "renders errors when email is not unique", %{conn: conn} do
+      conn = post(conn, ~p"/api/users/register", user: @duplicate_email_attrs)
+      assert json_response(conn, 201)["data"]
+
+      conn = post(conn, ~p"/api/users/register", user: @duplicate_email_attrs)
+
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
