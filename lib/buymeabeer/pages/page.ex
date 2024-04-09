@@ -1,4 +1,7 @@
 defmodule Buymeabeer.Pages.Page do
+  @moduledoc """
+  Page schema module to handle page related operation.
+  """
   alias Buymeabeer.Beer.Order
   alias Buymeabeer.Accounts.User
   use Ecto.Schema

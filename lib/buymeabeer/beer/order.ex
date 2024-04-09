@@ -1,4 +1,7 @@
 defmodule Buymeabeer.Beer.Order do
+  @moduledoc """
+  A schema for Order creation and other operations related to order
+  """
   alias Buymeabeer.Pages.Page
   alias Buymeabeer.Accounts.User
   use Ecto.Schema
@@ -14,7 +17,9 @@ defmodule Buymeabeer.Beer.Order do
     belongs_to :page, Page
   end
 
-  @doc false
+  @doc """
+  Order changeset for user date validation
+  """
   def changeset(order, attrs) do
     order
     |> cast(attrs, [:number_of_beers])
