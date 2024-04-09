@@ -17,4 +17,13 @@ defmodule BuymeabeerWeb.Router do
     post "/users/register", UserRegisterController, :create
     post "/users/log_in", AuthController, :create
   end
+
+  # Login protected routes
+
+  scope "/api", BuymeabeerWeb do
+    pipe_through [:api, :auth]
+
+    resources "/pages", PageController, except: [:new, :edit]
+    resources "/orders", OrderController, except: [:new, :edit]
+  end
 end

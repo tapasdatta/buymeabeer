@@ -12,10 +12,11 @@ defmodule BuymeabeerWeb.PageController do
   end
 
   def create(conn, %{"page" => page_params}) do
-    with {:ok, %Page{} = page} <- Pages.create_page(page_params) do
+    user = Guardian.Plug.current_resource(conn)
+
+    with {:ok, %Page{} = page} <- Pages.create_page(user, page_params) do
       conn
       |> put_status(:created)
-      |> put_resp_header("location", ~p"/api/pages/#{page}")
       |> render(:show, page: page)
     end
   end

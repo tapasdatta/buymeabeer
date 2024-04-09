@@ -3,6 +3,8 @@ defmodule Buymeabeer.Accounts.User do
   User schema defines the schema and changesets for all user related operations, validations
   and data filteration.
   """
+  alias Buymeabeer.Beer.Order
+  alias Buymeabeer.Pages.Page
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -12,6 +14,9 @@ defmodule Buymeabeer.Accounts.User do
     field :hashed_password, :string, redact: true
 
     timestamps(type: :utc_datetime)
+
+    has_many :pages, Page
+    has_many :orders, Order
   end
 
   @doc """

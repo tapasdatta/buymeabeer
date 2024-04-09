@@ -4,6 +4,7 @@ defmodule Buymeabeer.Pages do
   """
 
   import Ecto.Query, warn: false
+  alias Buymeabeer.Accounts.User
   alias Buymeabeer.Repo
 
   alias Buymeabeer.Pages.Page
@@ -49,9 +50,10 @@ defmodule Buymeabeer.Pages do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_page(attrs \\ %{}) do
+  def create_page(%User{} = user, attrs \\ %{}) do
     %Page{}
     |> Page.changeset(attrs)
+    |> Ecto.Changeset.put_assoc(:user, user)
     |> Repo.insert()
   end
 
